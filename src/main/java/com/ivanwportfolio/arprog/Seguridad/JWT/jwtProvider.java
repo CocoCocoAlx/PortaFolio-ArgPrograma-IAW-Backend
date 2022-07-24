@@ -24,7 +24,7 @@ public class jwtProvider {
     @Value("$(jwt.expiration")
     private int expiration;
 
-    private String generateToken(Authentication auth) {
+    public String generateToken(Authentication auth) {
         Admin admin = (Admin) auth.getPrincipal();
         return Jwts.builder().setSubject(admin.getUsername()).setIssuedAt(new Date()).setExpiration(new Date(new Date().getTime() + expiration * 3600)).signWith(SignatureAlgorithm.HS512, secreto).compact();
     }
