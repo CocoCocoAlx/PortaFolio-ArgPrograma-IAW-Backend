@@ -20,6 +20,9 @@ public class Persona {
     private String apellido;
     @Size(min=1,max=45, message="Ingreso incorrecto")
     private String imagen;
+    @NotNull
+    @Size(min=1,max=45, message="Ingreso incorrecto")
+    private String titulo;
 
     public int getId() {
         return id;
@@ -51,6 +54,14 @@ public class Persona {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
     
     
