@@ -19,14 +19,14 @@ public class jwtProvider {
 
     private final static Logger logger = LoggerFactory.getLogger(jwtProvider.class);
 
-    @Value("$(jwt.secret")
+    @Value("${jwt.secret}")
     private String secreto;
-    @Value("$(jwt.expiration")
+    @Value("${jwt.expiration}")
     private int expiration;
 
     public String generateToken(Authentication auth) {
         Admin admin = (Admin) auth.getPrincipal();
-        return Jwts.builder().setSubject(admin.getUsername()).setIssuedAt(new Date()).setExpiration(new Date(new Date().getTime() + expiration * 3600)).signWith(SignatureAlgorithm.HS512, secreto).compact();
+        return Jwts.builder().setSubject(admin.getUsername()).setIssuedAt(new Date()).setExpiration(new Date(new Date().getTime() + expiration * 1000)).signWith(SignatureAlgorithm.HS512, secreto).compact();
     }
 
     public String getNombreUsuarioDeToken(String token) {

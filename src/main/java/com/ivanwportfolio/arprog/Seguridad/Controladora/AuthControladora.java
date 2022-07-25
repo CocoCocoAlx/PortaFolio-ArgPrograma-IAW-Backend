@@ -1,5 +1,8 @@
 package com.ivanwportfolio.arprog.Seguridad.Controladora;
 
+import com.ivanwportfolio.arprog.Seguridad.Dto.LoginUsuario;
+import com.ivanwportfolio.arprog.Seguridad.Dto.NuevoUsuario;
+import com.ivanwportfolio.arprog.Seguridad.Dto.jwtDTO;
 import com.ivanwportfolio.arprog.Seguridad.Entidad.Rol;
 import com.ivanwportfolio.arprog.Seguridad.Entidad.Usuario;
 import com.ivanwportfolio.arprog.Seguridad.JWT.jwtProvider;
@@ -36,8 +39,6 @@ public class AuthControladora {
     AuthenticationManager authenticationManager;
     @Autowired
     UsuarioServicio usuarioServicio;
-    
-    
     @Autowired
     RolServicio rolServicio;
     @Autowired
@@ -60,7 +61,7 @@ public class AuthControladora {
         Set<Rol> roles = new HashSet<>();
         roles.add(rolServicio.getByRolNombre(RolNombre.ROLE_USER).get());
 
-        if (nuevoUsuario.getRoles().contain("admin")) {
+        if (nuevoUsuario.getRoles().contains("admin")) {
             roles.add(rolServicio.getByRolNombre(RolNombre.ROLE_ADMIN).get());
         }
         usuario.setRoles(roles);

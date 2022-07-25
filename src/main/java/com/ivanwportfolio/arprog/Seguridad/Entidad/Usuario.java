@@ -24,7 +24,7 @@ public class Usuario {
     @NotNull
     private String nombreUsuario;
     @NotNull
-    private String email;
+    private String correo;
     private String clave;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name="rol_id"))
@@ -33,10 +33,10 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String nombreUsuario, String email, String clave) {
+    public Usuario(String nombre, String nombreUsuario, String correo, String clave) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
-        this.email = email;
+        this.correo = correo;
         this.clave = clave;
     }
 
@@ -64,12 +64,12 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getClave() {
