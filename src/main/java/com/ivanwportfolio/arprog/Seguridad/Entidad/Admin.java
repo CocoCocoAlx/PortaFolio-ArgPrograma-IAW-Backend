@@ -12,20 +12,20 @@ public class Admin implements UserDetails {
     private String nombre;
     private String nombreUsuario;
     private String email;
-    private String clave;
+    private String password;
     private Collection<? extends GrantedAuthority> autorizaciones;
 
-    public Admin(String nombre, String nombreUsuario, String email, String clave, Collection<? extends GrantedAuthority> autorizaciones) {
+    public Admin(String nombre, String nombreUsuario, String email, String password, Collection<? extends GrantedAuthority> autorizaciones) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
-        this.clave = clave;
+        this.password = password;
         this.autorizaciones = autorizaciones;
     }
 
     public static Admin build(Usuario usuario) {
         List<GrantedAuthority> autorizaciones = usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol.getRolNombre().name())).collect(Collectors.toList());
-        return new Admin(usuario.getNombre(), usuario.getNombreUsuario(), usuario.getEmail(), usuario.getClave(), autorizaciones);
+        return new Admin(usuario.getNombre(), usuario.getNombreUsuario(), usuario.getEmail(), usuario.getPassword(), autorizaciones);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Admin implements UserDetails {
 
     @Override
     public String getPassword() {
-        return clave;
+        return password;
     }
 
     public String getNombre() {
@@ -47,7 +47,7 @@ public class Admin implements UserDetails {
         return nombreUsuario;
     }
 
-    public String getCorreo() {
+    public String getEmail() {
         return email;
     }
 
