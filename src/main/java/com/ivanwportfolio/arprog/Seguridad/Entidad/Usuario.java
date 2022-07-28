@@ -24,8 +24,9 @@ public class Usuario {
     @NotNull
     private String nombreUsuario;
     @NotNull
-    private String correo;
-    private String clave;
+    private String email;
+    @NotNull
+    private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name="rol_id"))
     private Set<Rol> roles = new HashSet<>();
@@ -33,11 +34,11 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String nombreUsuario, String correo, String clave) {
+    public Usuario(String nombre, String nombreUsuario, String email, String password) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
-        this.correo = correo;
-        this.clave = clave;
+        this.email = email;
+        this.password = password;
     }
 
     public int getId() {
@@ -64,20 +65,20 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getClave() {
-        return clave;
+    public String getPassword() {
+        return password;
     }
 
-    public void setClave(String clave) {
-        this.clave = clave;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<Rol> getRoles() {

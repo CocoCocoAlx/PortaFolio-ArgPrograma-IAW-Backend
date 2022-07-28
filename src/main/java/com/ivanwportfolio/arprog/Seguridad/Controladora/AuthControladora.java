@@ -47,22 +47,13 @@ public class AuthControladora {
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-<<<<<<< Updated upstream
-            return new ResponseEntity(new mensaje("Campos incorrectos o dirección de correo inválida"), HttpStatus.BAD_REQUEST);
-=======
             return new ResponseEntity(new Mensaje("Campos incorrectos o dirección de email inválida"), HttpStatus.BAD_REQUEST);
->>>>>>> Stashed changes
         }
         if (usuarioServicio.ExistsByNombreUsuario(nuevoUsuario.getNombreUsuario())) {
             return new ResponseEntity(new Mensaje("Ese nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
         }
-<<<<<<< Updated upstream
-        if (usuarioServicio.ExistsByCorreo(nuevoUsuario.getEmail())) {
-            return new ResponseEntity(new mensaje("Esa dirección de correo ya existe"), HttpStatus.BAD_REQUEST);
-=======
         if (usuarioServicio.ExistsByEmail(nuevoUsuario.getEmail())) {
             return new ResponseEntity(new Mensaje("Esa dirección de email ya existe"), HttpStatus.BAD_REQUEST);
->>>>>>> Stashed changes
         }
 
         Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));

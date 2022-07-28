@@ -20,8 +20,8 @@ public class UsuarioServicio {
             return iUsuarioRepo.existsByNombreUsuario(nombreUsuario);
         }
 
-        public boolean ExistsByCorreo(String email){
-            return iUsuarioRepo.existsByCorreo(email);
+        public boolean ExistsByEmail(String email){
+            return iUsuarioRepo.existsByEmail(email);
         }
         
         public void save(Usuario usuario){
