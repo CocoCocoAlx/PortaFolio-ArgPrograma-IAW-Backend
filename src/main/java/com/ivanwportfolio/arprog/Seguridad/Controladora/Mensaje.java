@@ -1,13 +1,13 @@
 package com.ivanwportfolio.arprog.Seguridad.Controladora;
 
-public class mensaje {
+public class Mensaje {
     private String mensaje;
 
-    public mensaje(String mensaje) {
+    public Mensaje(String mensaje) {
         this.mensaje = mensaje;
     }
 
-    public mensaje() {
+    public Mensaje() {
     }
 
     public String getMensaje() {

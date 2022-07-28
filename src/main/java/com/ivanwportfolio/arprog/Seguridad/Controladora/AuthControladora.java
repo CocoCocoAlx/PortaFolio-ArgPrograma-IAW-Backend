@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthControladora {
 
     @Autowired
@@ -47,13 +47,22 @@ public class AuthControladora {
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+<<<<<<< Updated upstream
             return new ResponseEntity(new mensaje("Campos incorrectos o dirección de correo inválida"), HttpStatus.BAD_REQUEST);
+=======
+            return new ResponseEntity(new Mensaje("Campos incorrectos o dirección de email inválida"), HttpStatus.BAD_REQUEST);
+>>>>>>> Stashed changes
         }
         if (usuarioServicio.ExistsByNombreUsuario(nuevoUsuario.getNombreUsuario())) {
-            return new ResponseEntity(new mensaje("Ese nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("Ese nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
         }
+<<<<<<< Updated upstream
         if (usuarioServicio.ExistsByCorreo(nuevoUsuario.getEmail())) {
             return new ResponseEntity(new mensaje("Esa dirección de correo ya existe"), HttpStatus.BAD_REQUEST);
+=======
+        if (usuarioServicio.ExistsByEmail(nuevoUsuario.getEmail())) {
+            return new ResponseEntity(new Mensaje("Esa dirección de email ya existe"), HttpStatus.BAD_REQUEST);
+>>>>>>> Stashed changes
         }
 
         Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
@@ -67,13 +76,13 @@ public class AuthControladora {
         usuario.setRoles(roles);
         usuarioServicio.save(usuario);
 
-        return new ResponseEntity(new mensaje("Usuario guardado"), HttpStatus.CREATED);
+        return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
     public ResponseEntity<jwtDTO> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity(new mensaje("Campos incorrectos"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("Campos incorrectos"), HttpStatus.BAD_REQUEST);
         }
 
         Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
