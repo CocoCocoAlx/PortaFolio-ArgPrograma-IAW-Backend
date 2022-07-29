@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("experiencialab")
+@RequestMapping("/experiencialab")
 public class ExperienciaControladora {
 
     @Autowired
@@ -30,6 +31,14 @@ public class ExperienciaControladora {
     public ResponseEntity<List<Experiencia>> list() {
         List<Experiencia> list = impExperienciaServicio.list();
         return new ResponseEntity(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/detalle/{id}")
+    public ResponseEntity<?> getById(@PathVariable("id") int id) {
+        if(!impExperienciaServicio.existsById(id))
+            return new ResponseEntity(new Mensaje ("Experiencia inexistente"),HttpStatus.NOT_FOUND);
+        Experiencia experiencia = impExperienciaServicio.getOne(id).get();
+        return new ResponseEntity(experiencia, HttpStatus.OK);
     }
 
     @PostMapping("/crear")
@@ -68,12 +77,12 @@ public class ExperienciaControladora {
         impExperienciaServicio.save(experiencia);
         return new ResponseEntity(new Mensaje("Experiencia actualizada"), HttpStatus.OK);
     }
-
+    
+    @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> borrar(@PathVariable("id") int id) {
         if (!impExperienciaServicio.existsById(id)) {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
         }
-
         impExperienciaServicio.delete(id);
         return new ResponseEntity(new Mensaje("Experiencia eliminada"), HttpStatus.OK);
     }
