@@ -53,7 +53,7 @@ public class EstudioControlador {
         Estudios estudios = new Estudios(estudiosDto.getDetalleEst(), estudiosDto.getDetalleEst());
         impEstudiosServicio.save(estudios);
 
-        return new ResponseEntity(new Mensaje("Estudios cargados"), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(new Mensaje("Estudios cargados"), HttpStatus.OK);
 
     }
 
