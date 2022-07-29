@@ -53,7 +53,7 @@ public class ExperienciaControladora {
         Experiencia experiencia = new Experiencia(experienciaDto.getNombreExp(), experienciaDto.getDetalleExp());
         impExperienciaServicio.save(experiencia);
 
-        return new ResponseEntity(new Mensaje("Experiencia cargada"), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(new Mensaje("Experiencia cargada"), HttpStatus.OK);
 
     }
 
