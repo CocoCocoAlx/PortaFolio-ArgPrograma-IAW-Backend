@@ -1,7 +1,6 @@
 package com.ivanwportfolio.arprog.Controladora;
 
 import com.ivanwportfolio.arprog.Dto.proyectosDto;
-import com.ivanwportfolio.arprog.Entidad.Experiencia;
 import com.ivanwportfolio.arprog.Entidad.Proyecto;
 import com.ivanwportfolio.arprog.Seguridad.Controladora.Mensaje;
 import com.ivanwportfolio.arprog.Servicio.ImpProyectoServicio;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,5 +65,26 @@ public class ProyectoControlador {
         }
         impProyectoServicio.delete(id);
         return new ResponseEntity(new Mensaje("Proyecto eliminado"), HttpStatus.OK);
+    }
+    
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<?> actualizar(@PathVariable("id") int id, @RequestBody proyectosDto proyectoDto) {
+        if (!impProyectoServicio.existsById(id)) {
+            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
+        }
+
+        if (impProyectoServicio.existsByNombreProy(proyectoDto.getNombreProy()) && impProyectoServicio.getByNombreProy(proyectoDto.getNombreProy()).get().getId() != id) {
+            return new ResponseEntity(new Mensaje("Este proyecto ya está cargado"), HttpStatus.BAD_REQUEST);
+        }
+
+        if (StringUtils.isBlank(proyectoDto.getNombreProy())) {
+            return new ResponseEntity(new Mensaje("El nombre es requerido"), HttpStatus.BAD_REQUEST);
+        }
+
+        Proyecto proyecto = impProyectoServicio.getOne(id).get();
+        proyecto.setNombreProy(proyectoDto.getNombreProy());
+        proyecto.setDetalleProy(proyectoDto.getDetalleProy());
+        impProyectoServicio.save(proyecto);
+        return new ResponseEntity(new Mensaje("Proyecto actualizado"), HttpStatus.OK);
     }
 }
