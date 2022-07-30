@@ -1,5 +1,7 @@
 package com.ivanwportfolio.arprog.Dto;
 
+import javax.persistence.Column;
+import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
 
 public class proyectosDto {
@@ -9,15 +11,17 @@ public class proyectosDto {
     private String detalleProy;
     @NotBlank
     private String enlaceProy;
+    @NotBlank
     private String imagen;
 
     public proyectosDto() {
     }
 
-    public proyectosDto(String nombreProy, String detalleProy, String enlaceProy) {
+    public proyectosDto(String nombreProy, String detalleProy, String enlaceProy, String imagen) {
         this.nombreProy = nombreProy;
         this.detalleProy = detalleProy;
         this.enlaceProy = enlaceProy;
+        this.imagen = imagen;
     }
 
     public String getNombreProy() {

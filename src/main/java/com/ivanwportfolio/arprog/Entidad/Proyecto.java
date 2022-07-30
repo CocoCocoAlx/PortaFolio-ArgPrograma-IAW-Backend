@@ -1,11 +1,9 @@
 package com.ivanwportfolio.arprog.Entidad;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
 @Entity
 public class Proyecto {
@@ -15,8 +13,6 @@ public class Proyecto {
     private String nombreProy;
     private String detalleProy;
     private String enlaceProy;
-    @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
     private String imagen;
 
     public Proyecto() {
