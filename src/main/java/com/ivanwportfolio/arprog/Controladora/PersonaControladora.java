@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 /* Añadido por si surgen problemas más adelante al hacer las peticiones desde el frontend */
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://argprogramaiawfront.web.app/")
 public class PersonaControladora {
 
     @Autowired
