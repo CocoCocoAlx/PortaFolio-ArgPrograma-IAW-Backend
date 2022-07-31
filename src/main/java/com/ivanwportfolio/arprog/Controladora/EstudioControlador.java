@@ -50,7 +50,7 @@ public class EstudioControlador {
             return new ResponseEntity(new Mensaje("Esta entrada ya existe"), HttpStatus.BAD_REQUEST);
         }
 
-        Estudios estudios = new Estudios(estudiosDto.getDetalleEst(), estudiosDto.getDetalleEst());
+        Estudios estudios = new Estudios(estudiosDto.getDetalleEst(), estudiosDto.getDetalleEst(), estudiosDto.getPeriodoEst());
         impEstudiosServicio.save(estudios);
 
         return new ResponseEntity(new Mensaje("Estudios cargados"), HttpStatus.OK);
@@ -74,6 +74,7 @@ public class EstudioControlador {
         Estudios estudios = impEstudiosServicio.getOne(id).get();
         estudios.setNombreEst(estDto.getNombreEst());
         estudios.setDetalleEst(estDto.getDetalleEst());
+        estudios.setPeriodoEst(estDto.getPeriodoEst());
         impEstudiosServicio.save(estudios);
         return new ResponseEntity(new Mensaje("Estudios actualizados"), HttpStatus.OK);
     }

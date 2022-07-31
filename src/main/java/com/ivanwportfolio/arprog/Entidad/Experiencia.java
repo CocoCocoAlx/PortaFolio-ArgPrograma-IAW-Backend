@@ -12,13 +12,15 @@ public class Experiencia {
     private int id;
     private String nombreExp;
     private String detalleExp;
+    private String periodoExp;
 
     public Experiencia() {
     }
 
-    public Experiencia(String nombreExp, String detalleExp) {
+    public Experiencia(String nombreExp, String detalleExp, String periodoExp) {
         this.nombreExp = nombreExp;
         this.detalleExp = detalleExp;
+        this.periodoExp=periodoExp;
     }
 
     public int getId() {
@@ -43,6 +45,14 @@ public class Experiencia {
 
     public void setDetalleExp(String detalleExp) {
         this.detalleExp = detalleExp;
+    }
+
+    public String getPeriodoExp() {
+        return periodoExp;
+    }
+
+    public void setPeriodoExp(String periodoExp) {
+        this.periodoExp = periodoExp;
     }
     
     

@@ -50,7 +50,7 @@ public class ExperienciaControladora {
             return new ResponseEntity(new Mensaje("Esta entrada ya existe"), HttpStatus.BAD_REQUEST);
         }
 
-        Experiencia experiencia = new Experiencia(experienciaDto.getNombreExp(), experienciaDto.getDetalleExp());
+        Experiencia experiencia = new Experiencia(experienciaDto.getNombreExp(), experienciaDto.getDetalleExp(), experienciaDto.getPeriodoExp());
         impExperienciaServicio.save(experiencia);
 
         return new ResponseEntity(new Mensaje("Experiencia cargada"), HttpStatus.OK);
@@ -74,6 +74,7 @@ public class ExperienciaControladora {
         Experiencia experiencia = impExperienciaServicio.getOne(id).get();
         experiencia.setNombreExp(expDto.getNombreExp());
         experiencia.setDetalleExp(expDto.getDetalleExp());
+        experiencia.setPeriodoExp(expDto.getPeriodoExp());
         impExperienciaServicio.save(experiencia);
         return new ResponseEntity(new Mensaje("Experiencia actualizada"), HttpStatus.OK);
     }

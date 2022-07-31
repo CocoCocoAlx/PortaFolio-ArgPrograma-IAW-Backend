@@ -12,13 +12,15 @@ public class Estudios {
     private int id;
     private String nombreEst;
     private String detalleEst;
+    private String periodoEst;
 
     public Estudios() {
     }
 
-    public Estudios(String nombreEst, String detalleEst) {
+    public Estudios(String nombreEst, String detalleEst, String periodoEst) {
         this.nombreEst = nombreEst;
         this.detalleEst = detalleEst;
+        this.periodoEst = periodoEst;
     }
 
     public int getId() {
@@ -43,6 +45,14 @@ public class Estudios {
 
     public void setDetalleEst(String detalleEst) {
         this.detalleEst = detalleEst;
+    }
+
+    public String getPeriodoEst() {
+        return periodoEst;
+    }
+
+    public void setPeriodoEst(String periodoEst) {
+        this.periodoEst = periodoEst;
     }
     
     

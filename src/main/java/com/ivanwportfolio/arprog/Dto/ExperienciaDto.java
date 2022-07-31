@@ -8,13 +8,16 @@ public class ExperienciaDto {
     private String nombreExp;
     @NotBlank
     private String detalleExp;
+    @NotBlank
+    private String periodoExp;
 
     public ExperienciaDto() {
     }
 
-    public ExperienciaDto(String nombreExp, String detalleExp) {
+    public ExperienciaDto(String nombreExp, String detalleExp, String periodoExp) {
         this.nombreExp = nombreExp;
         this.detalleExp = detalleExp;
+        this.periodoExp=periodoExp;
     }
 
     public String getNombreExp() {
@@ -31,6 +34,14 @@ public class ExperienciaDto {
 
     public void setDetalleExp(String detalleExp) {
         this.detalleExp = detalleExp;
+    }
+
+    public String getPeriodoExp() {
+        return periodoExp;
+    }
+
+    public void setPeriodoExp(String periodoExp) {
+        this.periodoExp = periodoExp;
     }
     
     
